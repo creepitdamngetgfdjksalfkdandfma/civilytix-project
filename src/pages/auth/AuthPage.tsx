@@ -22,9 +22,9 @@ const AuthPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 p-4">
-      <Card className="w-full max-w-lg animate-scale-in glass">
+      <Card className="w-full max-w-lg bg-gradient-to-br from-white via-blue-50 to-blue-100 shadow-xl rounded-xl backdrop-blur-lg">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center bg-gradient-to-r from-purple-600 to-blue-600 text-transparent bg-clip-text">
+          <CardTitle className="text-2xl text-center bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-400 text-transparent bg-clip-text">
             Welcome to Civilytix
           </CardTitle>
         </CardHeader>
