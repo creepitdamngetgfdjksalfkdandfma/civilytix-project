@@ -1,69 +1,105 @@
-# Welcome to your Lovable project
+Vite React Project 🚀
 
-## Project info
+This is a Vite-powered React project using TypeScript. It provides a fast and efficient development setup with modern tooling.
 
-**URL**: https://lovable.dev/projects/a2ec8521-c075-4be9-bc55-a499ddd58587
+🌟 Features
 
-## How can I edit this code?
+⚡ Vite - Super-fast development environment
 
-There are several ways of editing your application.
+🏗 React 18 - Component-based UI development
 
-**Use Lovable**
+🔥 TypeScript - Strongly-typed JavaScript
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a2ec8521-c075-4be9-bc55-a499ddd58587) and start prompting.
+🎨 Tailwind CSS - Utility-first CSS framework (if used)
 
-Changes made via Lovable will be committed automatically to this repo.
+🏡 React Router - Declarative routing for React apps (if used)
 
-**Use your preferred IDE**
+⚡ TanStack Query - Powerful asynchronous state management (if used)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+📦 Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Clone the repository and install dependencies:
 
-Follow these steps:
+git clone <repository-url>
+cd <project-folder>
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+🚀 Getting Started
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Run the development server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+This will start a local development server at http://localhost:5173/ (default Vite port).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+🏗 Building for Production
 
-**Use GitHub Codespaces**
+To generate an optimized production build, run:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+npm run build
 
-## What technologies are used for this project?
+To preview the production build locally:
 
-This project is built with .
+npm run preview
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+📂 Project Structure
 
-## How can I deploy this project?
+📦 project-folder
+ ┣ 📂 src
+ ┃ ┣ 📂 components        # Reusable React components
+ ┃ ┣ 📂 pages             # Page components
+ ┃ ┣ 📂 assets            # Static assets (images, fonts, etc.)
+ ┃ ┣ 📜 main.tsx          # Entry point of the application
+ ┃ ┗ 📜 App.tsx           # Root component
+ ┣ 📜 index.html          # Main HTML file
+ ┣ 📜 package.json        # Project dependencies and scripts
+ ┣ 📜 tsconfig.json       # TypeScript configuration
+ ┣ 📜 vite.config.ts      # Vite configuration file
+ ┗ 📜 README.md           # Project documentation
 
-Simply open [Lovable](https://lovable.dev/projects/a2ec8521-c075-4be9-bc55-a499ddd58587) and click on Share -> Publish.
+🛠 Available Scripts
 
-## I want to use a custom domain - is that possible?
+npm run dev – Start the development server
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+npm run build – Build the project for production
+
+npm run preview – Preview the production build
+
+npm run lint – Run ESLint to check code quality (if configured)
+
+⚡ Dependencies
+
+📌 Main Dependencies
+
+react
+
+react-dom
+
+react-router-dom (if used)
+
+@tanstack/react-query (if used)
+
+tailwindcss (if used)
+
+📌 Development Dependencies
+
+vite
+
+typescript
+
+eslint
+
+@vitejs/plugin-react-swc
+
+🎯 Environment Variables
+
+Create a .env file in the root directory and add your environment-specific variables:
+
+VITE_API_BASE_URL="https://your-api-url.com"
+
+📝 License
+
+This project is licensed under the MIT License.
+
+💻 Made with ❤️ using Vite + React + TypeScript
+
