@@ -21,6 +21,7 @@ import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/auth";
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

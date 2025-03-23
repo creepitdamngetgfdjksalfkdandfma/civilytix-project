@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useAuth } from "@/contexts/auth";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 
 const formSchema = z
   .object({
@@ -39,16 +41,13 @@ interface SignupFormProps {
   role: string;
 }
 
-// Type to ensure role is one of the accepted values
 type UserRole = "government" | "bidder" | "public";
 
 const SignupForm = ({ role }: SignupFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { checkAuth } = useAuth();
-
-  // Log the role being used for signup
-  console.log("SignupForm - Using role:", role);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,22 +60,31 @@ const SignupForm = ({ role }: SignupFormProps) => {
     },
   });
 
-  // Validate that the role is one of the accepted values
   const validateRole = (inputRole: string): UserRole => {
-    if (inputRole === "government" || inputRole === "bidder" || inputRole === "public") {
-      return inputRole;
+    if (["government", "bidder", "public"].includes(inputRole)) {
+      return inputRole as UserRole;
     }
     console.warn(`Invalid role "${inputRole}" provided, defaulting to "public"`);
     return "public";
   };
 
+  const onCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!captchaToken) {
+      toast({
+        variant: "destructive",
+        title: "Captcha Required",
+        description: "Please complete the CAPTCHA to continue.",
+      });
+      return;
+    }
+
     try {
-      // Ensure role is one of the valid options
       const validatedRole = validateRole(role);
-      console.log(`Signing up with validated role: ${validatedRole}`);
-      
-      // Signup with Supabase
+
       const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
@@ -99,33 +107,30 @@ const SignupForm = ({ role }: SignupFormProps) => {
       }
 
       if (data.user) {
-        console.log("User created, creating profile entry...");
-        
-        // Manually create a profile entry to ensure role is set
         const { error: profileError } = await supabase
           .from("profiles")
           .insert({
             id: data.user.id,
             full_name: values.name,
-            role: validatedRole, // Using the validated role here
+            role: validatedRole,
             organization: values.organization || null,
           });
-          
+
         if (profileError) {
           console.error("Error creating profile:", profileError);
           toast({
             variant: "destructive",
             title: "Profile Error",
-            description: "Your account was created, but there was an issue setting up your profile. Please contact support.",
+            description:
+              "Your account was created, but there was an issue setting up your profile. Please contact support.",
           });
         }
-        
-        // Refresh auth context after successful signup
+
         await checkAuth();
-        
         toast({
           title: "Success",
-          description: "Your account has been created successfully. Please check your email to verify your account.",
+          description:
+            "Your account has been created successfully. Please check your email to verify your account.",
         });
         navigate("/");
       }
@@ -203,17 +208,22 @@ const SignupForm = ({ role }: SignupFormProps) => {
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Confirm your password"
-                  {...field}
-                />
+                <Input type="password" placeholder="Confirm your password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        
+        {/* reCAPTCHA Component */}
+        <div className="flex justify-center">
+          <ReCAPTCHA 
+            sitekey="6LeSrf0qAAAAALc_6K_cFZCNoZyNoA3oQMcpmqFH" 
+            onChange={onCaptchaChange} 
+          />
+        </div>
+
+        <Button type="submit" className="w-full" disabled={!captchaToken}>
           Sign Up
         </Button>
       </form>

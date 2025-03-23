@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useAuth } from "@/contexts/auth";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -33,6 +35,7 @@ const LoginForm = ({ role }: LoginFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { checkAuth } = useAuth();
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -43,6 +46,15 @@ const LoginForm = ({ role }: LoginFormProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!captchaToken) {
+      toast({
+        variant: "destructive",
+        title: "Captcha Error",
+        description: "Please complete the CAPTCHA verification.",
+      });
+      return;
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: values.email,
@@ -107,6 +119,16 @@ const LoginForm = ({ role }: LoginFormProps) => {
             </FormItem>
           )}
         />
+
+        {/* reCAPTCHA */}
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            sitekey="6LeSrf0qAAAAALc_6K_cFZCNoZyNoA3oQMcpmqFH"
+            onChange={(token) => setCaptchaToken(token)}
+            onExpired={() => setCaptchaToken(null)}
+          />
+        </div>
+
         <Button type="submit" className="w-full">
           Login
         </Button>
