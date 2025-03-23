@@ -20,6 +20,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ProjectTreeSelector } from "@/components/projects/ProjectTreeSelector";
 import { ProjectTreeSelection } from "@/types/projectTree";
+import TomTomMap from "./TomTomMap";
 
 const projectFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -175,6 +176,8 @@ const NewProjectPage = () => {
                 </FormItem>
               )}
             />
+
+            <TomTomMap />
 
             {/* Project Type Selector with Budget Prediction */}
             <div className="p-4 border rounded-lg space-y-3 bg-gray-50">

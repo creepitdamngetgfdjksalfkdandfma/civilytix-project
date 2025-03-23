@@ -15,7 +15,7 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-gradient-to-r from-blue-300 to-cyan-200 text-blue-900 py-6 text-center shadow-md">
+    <header className="bg-gradient-to-r from-blue-300 to-cyan-200 text-blue-900 py-2 text-center shadow-md">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-xl font-bold flex items-center gap-2">

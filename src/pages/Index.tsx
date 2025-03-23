@@ -7,6 +7,7 @@ import PublicDashboard from "./dashboard/PublicDashboard";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { useAuth } from "@/contexts/auth";
 import { useEffect, useState } from "react";
+import backgroundImage from '../assets/bg2new.jpg';
 
 const Index = () => {
   const { user, userRole, isLoading, checkAuth } = useAuth();
@@ -15,7 +16,7 @@ const Index = () => {
   const [checkingRole, setCheckingRole] = useState(false);
 
   console.log("Index page - Current user role:", userRole, "User:", user ? "Logged in" : "Not logged in");
-  
+
   // If we have a user but no role, try to fetch the role
   useEffect(() => {
     if (user && !userRole && !checkingRole && !isLoading) {
@@ -43,9 +44,9 @@ const Index = () => {
         <div className="p-6 rounded-lg border border-yellow-300 bg-yellow-50 text-yellow-800 max-w-md text-center">
           <h2 className="text-xl font-semibold mb-2">Account Setup Incomplete</h2>
           <p className="mb-4">Your account exists but doesn't have a role assigned. Please sign out and create a new account with a specific role.</p>
-          <Button 
-            onClick={() => navigate("/auth")} 
-            variant="outline" 
+          <Button
+            onClick={() => navigate("/auth")}
+            variant="outline"
             className="mr-2"
           >
             Go to Login
@@ -59,8 +60,11 @@ const Index = () => {
     return (
       <div className="min-h-screen">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-          <div className="container mx-auto px-6 py-24">
+        <div className="relative bg-cover bg-center text-white" style={{ backgroundImage: `url(${backgroundImage})` }}>
+          {/* Overlay for opacity */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+
+          <div className="relative container mx-auto px-6 py-28">
             <div className="flex flex-col items-center text-center space-y-8">
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 Welcome to Civilytix
@@ -68,8 +72,8 @@ const Index = () => {
               <p className="text-xl md:text-2xl max-w-2xl text-gray-100">
                 Transforming government tenders with transparency, efficiency, and trust
               </p>
-              <Button 
-                onClick={() => navigate("/auth")} 
+              <Button
+                onClick={() => navigate("/auth")}
                 size="lg"
                 className="bg-white text-purple-600 hover:bg-gray-100 hover:text-purple-700"
               >
@@ -79,6 +83,7 @@ const Index = () => {
             </div>
           </div>
         </div>
+
 
         {/* Features Section */}
         <div className="py-16 bg-gray-50">
@@ -95,7 +100,7 @@ const Index = () => {
                   <p className="text-gray-600 mb-4">
                     Streamline tender management, evaluate bids efficiently, and ensure transparent project execution
                   </p>
-                  <Button 
+                  <Button
                     onClick={() => navigate("/auth?role=government")}
                     variant="outline"
                     className="w-full"
@@ -114,7 +119,7 @@ const Index = () => {
                   <p className="text-gray-600 mb-4">
                     Access opportunities, submit bids seamlessly, and track your application status in real-time
                   </p>
-                  <Button 
+                  <Button
                     onClick={() => navigate("/auth?role=bidder")}
                     variant="outline"
                     className="w-full"
@@ -133,7 +138,7 @@ const Index = () => {
                   <p className="text-gray-600 mb-4">
                     Monitor project progress, ensure transparency, and stay informed about government initiatives
                   </p>
-                  <Button 
+                  <Button
                     onClick={() => navigate("/auth?role=public")}
                     variant="outline"
                     className="w-full"
@@ -164,9 +169,9 @@ const Index = () => {
           <div className="p-6 rounded-lg border border-yellow-300 bg-yellow-50 text-yellow-800">
             <h2 className="text-xl font-semibold mb-2">Role Not Found</h2>
             <p className="mb-4">Your account doesn't have a role assigned. Please sign out and log in again with a specific role.</p>
-            <Button 
-              onClick={() => navigate("/auth")} 
-              variant="outline" 
+            <Button
+              onClick={() => navigate("/auth")}
+              variant="outline"
               className="mr-2"
             >
               Go to Login
