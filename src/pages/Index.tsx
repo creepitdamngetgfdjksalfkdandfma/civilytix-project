@@ -63,7 +63,7 @@ const Index = () => {
           <div className="container mx-auto px-6 py-24">
             <div className="flex flex-col items-center text-center space-y-8">
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Welcome to CivilytixXX
+                Welcome to Civilytix
               </h1>
               <p className="text-xl md:text-2xl max-w-2xl text-gray-100">
                 Transforming government tenders with transparency, efficiency, and trust
@@ -84,9 +84,9 @@ const Index = () => {
         <div className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">Why Choose Civilytix?</h2>
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Feature Cards */}
-              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-6 rounded-xl shadow-lg bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-black transition-shadow duration-300 hover:shadow-xl hover:shadow-blue-400">
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="p-3 bg-purple-100 rounded-full">
                     <CheckCircle className="h-8 w-8 text-purple-600" />
@@ -105,7 +105,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-6 rounded-xl shadow-lg bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-black transition-shadow duration-300 hover:shadow-xl hover:shadow-blue-400">
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="p-3 bg-blue-100 rounded-full">
                     <CheckCircle className="h-8 w-8 text-blue-600" />
@@ -124,7 +124,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-6 rounded-xl shadow-lg bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-black transition-shadow duration-300 hover:shadow-xl hover:shadow-blue-400">
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="p-3 bg-green-100 rounded-full">
                     <CheckCircle className="h-8 w-8 text-green-600" />
