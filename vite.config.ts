@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
     base: '/', 
     base: '/', 
-    base: '/creepitdamngetgfdjksalfkdandfma/',
+    base: '/civilytix-project/',
   server: {
     host: "::",
     port: 8080,
